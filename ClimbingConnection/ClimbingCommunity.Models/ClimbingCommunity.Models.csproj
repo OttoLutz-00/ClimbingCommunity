@@ -55,6 +55,10 @@
     <Compile Include="ClimberModels\ClimberDetail.cs" />
     <Compile Include="ClimberModels\ClimberEdit.cs" />
     <Compile Include="ClimberModels\ClimberListItem.cs" />
+    <Compile Include="GymModels\GymCreate.cs" />
+    <Compile Include="GymModels\GymDetail.cs" />
+    <Compile Include="GymModels\GymEdit.cs" />
+    <Compile Include="GymModels\GymListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

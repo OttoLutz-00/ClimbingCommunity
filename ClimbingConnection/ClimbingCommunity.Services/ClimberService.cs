@@ -28,6 +28,7 @@ namespace ClimbingCommunity.Services
                 Username = model.Username,
                 Bio = model.Bio,
                 GymId = model.GymId,
+                TotalSends = 0
             };
 
             using (var ctx = new ApplicationDbContext())
