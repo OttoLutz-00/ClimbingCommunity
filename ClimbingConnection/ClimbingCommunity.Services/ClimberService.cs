@@ -34,7 +34,7 @@ namespace ClimbingCommunity.Services
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Climbers.Add(entity);
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() <= 3;
             }
         }
 
