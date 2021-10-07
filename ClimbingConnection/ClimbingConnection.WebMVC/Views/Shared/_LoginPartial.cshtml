@@ -4,7 +4,7 @@
      using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "ms-auto" }))
      {
         @Html.AntiForgeryToken()
-         <ul class="navbar-nav me-3">
+         <ul class="navbar-nav  ms-auto">
              <li class="nav-item p-2 py-1">
              <!--C: AUTHORIZED & CLIMBER-->
             @if (TempData["HasProfile"] as bool? ?? false)
