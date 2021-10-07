@@ -25,8 +25,7 @@ namespace ClimbingConnection.WebMVC.Controllers
         public ActionResult Index()
         {
             TempData.Keep();
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new ClimberService(userId);
+            var service = CreateClimberService();
             var model = service.GetAllClimbers();
             return View(model);
         }
@@ -36,6 +35,13 @@ namespace ClimbingConnection.WebMVC.Controllers
         public ActionResult Create()
         {
             TempData.Keep();
+            var service = CreateClimberService();
+            bool hasClimber = service.ClimberHasCreatedProfile();
+            if (hasClimber)
+            {
+                TempData["ClimberMessage"] = "You already have a climber profile.";
+                return RedirectToAction("Details", new { id=service.GetClimberId()});
+            }
             return View();
         }
 

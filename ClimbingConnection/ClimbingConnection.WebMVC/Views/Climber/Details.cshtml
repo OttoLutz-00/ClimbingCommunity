@@ -9,6 +9,16 @@
 <div>
     <h4>ClimberDetail</h4>
     <hr />
+    @if (TempData["ClimberMessage"] != null){
+        <div class="alert alert-success fade-in" role="alert">
+
+            <button type="button" class="close" data-dismiss="alert">
+                <span>&times;</span>
+            </button>
+
+            @TempData["ClimberMessage"]
+        </div>
+    }
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.ClimberId)
