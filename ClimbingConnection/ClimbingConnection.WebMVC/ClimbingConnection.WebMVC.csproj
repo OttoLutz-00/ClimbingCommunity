@@ -258,6 +258,8 @@
     <Content Include="Views\Climber\Create.cshtml" />
     <Content Include="Views\Gym\Create.cshtml" />
     <Content Include="Views\Gym\Index.cshtml" />
+    <Content Include="Views\Climber\Edit.cshtml" />
+    <Content Include="Views\Climber\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

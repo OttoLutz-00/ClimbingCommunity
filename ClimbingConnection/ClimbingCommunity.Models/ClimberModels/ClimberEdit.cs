@@ -14,6 +14,6 @@ namespace ClimbingCommunity.Models.ClimberModels
         public string Username { get; set; }
         [Required]
         public string Bio { get; set; }
-        public int GymId { get; set; }
+        public int? GymId { get; set; }
     }
 }

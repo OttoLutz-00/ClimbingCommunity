@@ -9,7 +9,7 @@ namespace ClimbingCommunity.Models.ClimberModels
 {
     public class ClimberDetail
     {
-
+        public int ClimberId { get; set; }
         public string Username { get; set; }
         public string Bio { get; set; }
         [Display(Name = "Top Grade")]
@@ -18,6 +18,7 @@ namespace ClimbingCommunity.Models.ClimberModels
         public int TotalSends { get; set; }
         [Display(Name = "Home Gym")]
         public string HomeGymName { get; set; }
+        public int? GymId { get; set; }
 
     }
 }

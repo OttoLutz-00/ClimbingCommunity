@@ -1,4 +1,5 @@
 ﻿using ClimbingCommunity.Models;
+using ClimbingCommunity.Models.ClimberModels;
 using ClimbingCommunity.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -23,6 +24,7 @@ namespace ClimbingConnection.WebMVC.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            TempData.Keep();
             var userId = Guid.Parse(User.Identity.GetUserId());
             var service = new ClimberService(userId);
             var model = service.GetAllClimbers();
@@ -33,6 +35,7 @@ namespace ClimbingConnection.WebMVC.Controllers
         [Authorize]
         public ActionResult Create()
         {
+            TempData.Keep();
             return View();
         }
 
@@ -42,6 +45,7 @@ namespace ClimbingConnection.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ClimberCreate model)
         {
+            TempData.Keep();
             if (!ModelState.IsValid) return View(model);
 
             var service = CreateClimberService();
@@ -53,7 +57,62 @@ namespace ClimbingConnection.WebMVC.Controllers
             }
             TempData["SaveResult"] = "Your Climber was created.";
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
+        }
+
+        // GET: Climber/Edit/{id}
+        public ActionResult Edit(int id)
+        {
+            TempData.Keep();
+            var service = CreateClimberService();
+            var climber = service.GetClimberById(id);
+            var model = new ClimberEdit()
+            {
+                ClimberId = id,
+                Username = climber.Username,
+                Bio = climber.Bio,
+                GymId = climber.GymId
+            };
+
+            return View(model);
+        }
+
+        // POST: Climber/Edit/{id}
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int? id, ClimberEdit model)
+        {
+            TempData.Keep();
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.ClimberId != id)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+                return View(model);
+            }
+
+            var service = CreateClimberService();
+
+            if (service.UpdateClimber(model))
+            {
+                TempData["SaveResult"] = "Your climber profile was updated.";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Your climber profile could not be updated.");
+            return View(model);
+        }
+
+
+        // GET: Climber/Details/{id}
+        [Authorize]
+        public ActionResult Details(int id)
+        {
+            TempData.Keep();
+            var service = CreateClimberService();
+            var model = service.GetClimberById(id);
+            return View(model);
         }
 
 

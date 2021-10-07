@@ -20,12 +20,14 @@
             <ul class="navbar-nav me-auto">
                 @if (User.Identity.IsAuthenticated)
                 {
-                <li class="nav-item active p-2 py-1">@Html.ActionLink("Gyms", "Index", "Gym", new { area = "" }, new { @class = "nav - link" })</li>
-                <li class="nav-item p-2 py-1">@Html.ActionLink("Climbers", "Index", "Climber", new { area = "" }, new { @class = "nav - link" })</li>
-                <li class="nav-item p-2 py-1">@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav - link" })</li>
+                    <li class="nav-item active p-2 py-1">@Html.ActionLink("Gyms", "Index", "Gym", new { area = "" }, new { @class = "nav - link" })</li>
+                    <li class="nav-item p-2 py-1">@Html.ActionLink("Climbers", "Index", "Climber", new { area = "" }, new { @class = "nav - link" })</li>
+                    <li class="nav-item p-2 py-1">@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav - link" })</li>
                 }
             </ul>
-            @Html.Partial("_LoginPartial")
+            
+            @Html.Partial("_LoginPartial");
+            
         </div>
         
     </nav>
@@ -45,6 +47,7 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+    <script src="js/bootstrap.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

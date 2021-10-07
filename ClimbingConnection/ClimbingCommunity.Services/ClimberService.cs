@@ -44,9 +44,10 @@ namespace ClimbingCommunity.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
-                    ctx.Climbers.Where(e => e.OwnerId == _userId)
+                    ctx.Climbers
                     .Select(e => new ClimberListItem()
                     {
+                        ClimberId = e.ClimberId,
                         Username = e.Username,
                         TopGrade = e.TopGrade,
                         TotalSends = e.TotalSends,
@@ -63,10 +64,12 @@ namespace ClimbingCommunity.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
-                    ctx.Climbers.Single(e => e.OwnerId == _userId && e.ClimberId == id);
+                    ctx.Climbers.Single(e => e.ClimberId == id);
 
                 return new ClimberDetail()
                 {
+                    ClimberId = query.ClimberId,
+                    GymId = query.GymId,
                     Username = query.Username,
                     Bio = query.Bio,
                     TopGrade = query.TopGrade,
@@ -82,6 +85,11 @@ namespace ClimbingCommunity.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var climber = ctx.Climbers.Single(e => e.OwnerId == _userId && e.ClimberId == model.ClimberId);
+
+                if (climber == null)
+                {
+                    return false;
+                }
 
                 climber.Username = model.Username;
                 climber.Bio = model.Bio;
@@ -99,6 +107,53 @@ namespace ClimbingCommunity.Services
                 var climber = ctx.Climbers.Single(e => e.OwnerId == _userId && e.ClimberId == id);
                 ctx.Climbers.Remove(climber);
                 return ctx.SaveChanges() == 1;
+            }
+        }
+
+        // READ (Checks if there is a climber that exists with a given owner id)
+        public bool ClimberHasCreatedProfile()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var climbers = ctx.Climbers.Where(e => e.OwnerId == _userId).DefaultIfEmpty(null).Single();
+                if (climbers == null)
+                    return false;
+                else
+                    return true;
+            }
+        }
+
+        // READ (get climber name by OwnerId)
+        public string GetClimberName()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                if (ctx.Climbers.First(e => e.OwnerId == _userId).Username != null)
+                {
+                    return ctx.Climbers.First(e => e.OwnerId == _userId).Username;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        // READ (get climber Id by OwnerId)
+        public int GetClimberId()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                int number = 0;
+                bool ownerHasClimber = ctx.Climbers.Where(e => e.OwnerId == _userId).SingleOrDefault() != null;
+
+                if (ownerHasClimber)
+                {
+                    number = ctx.Climbers.Where(e => e.OwnerId == _userId).SingleOrDefault().ClimberId;
+                }
+
+                return number;
+
             }
         }
 

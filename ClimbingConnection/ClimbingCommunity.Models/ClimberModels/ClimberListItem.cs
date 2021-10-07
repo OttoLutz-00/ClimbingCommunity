@@ -9,7 +9,7 @@ namespace ClimbingCommunity.Models.ClimberModels
 {
     public class ClimberListItem
     {
-
+        public int ClimberId { get; set; }
         public string Username { get; set; }
         [Display(Name = "Top Grade")]
         public int TopGrade { get; set; }

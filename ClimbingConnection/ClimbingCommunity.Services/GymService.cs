@@ -42,7 +42,7 @@ namespace ClimbingCommunity.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
-                    ctx.Gyms.Where(e => e.OwnerId == _userId)
+                    ctx.Gyms
                     .Select(e => new GymListItem()
                     {
                         Name = e.Name,

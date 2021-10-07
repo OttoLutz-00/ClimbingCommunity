@@ -1,22 +1,32 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
-{
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "ms-auto" }))
-    {
-    @Html.AntiForgeryToken()
-
-    <ul class="navbar-nav me-3">
-        <li class="nav-item p-2 py-1">
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li class="nav-item p-2 py-1"><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
-    }
-}
-else
-{
-    <ul class="navbar-nav me-3">
-        <li class="nav-item p-2 py-1">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li class="nav-item p-2 py-1">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
-}
+ {
+     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "ms-auto" }))
+     {
+        @Html.AntiForgeryToken()
+         <ul class="navbar-nav me-3">
+             <li class="nav-item p-2 py-1">
+             <!--C: AUTHORIZED & CLIMBER-->
+            @if (TempData["HasProfile"] as bool? ?? false)
+             {
+                 string climberName = TempData["ClimberName"].ToString();
+                @Html.ActionLink("Hello " + climberName + "!", "Details", "Climber", new { id = TempData["ClimberId"]}, htmlAttributes: new { title = "My Profileeee"})
+             }
+             else
+             {
+                @Html.ActionLink("My Account", "Create", "Climber")
+             }
+            <!--B: AUTHORIZED & NOT CLIMBER-->
+             </li>
+             <li class="nav-item p-2 py-1"><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+         </ul>
+     }
+ }
+ else
+ {
+    <!--A: NOT AUTHORIZED & NOT CLIMBER-->
+     <ul class="navbar-nav me-3">
+         <li class="nav-item p-2 py-1">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+         <li class="nav-item p-2 py-1">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+     </ul>
+ }

@@ -22,6 +22,7 @@ namespace ClimbingConnection.WebMVC.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            TempData.Keep();
             var userId = Guid.Parse(User.Identity.GetUserId());
             var service = new GymService(userId);
             var model = service.GetAllGyms();
@@ -32,6 +33,7 @@ namespace ClimbingConnection.WebMVC.Controllers
         [Authorize]
         public ActionResult Create()
         {
+            TempData.Keep();
             return View();
         }
 
@@ -41,6 +43,7 @@ namespace ClimbingConnection.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(GymCreate model)
         {
+            TempData.Keep();
             if (!ModelState.IsValid) return View(model);
 
             var service = CreateGymService();

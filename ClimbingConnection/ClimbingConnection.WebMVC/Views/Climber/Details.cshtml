@@ -1,0 +1,74 @@
+﻿@model ClimbingCommunity.Models.ClimberModels.ClimberDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ClimberDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ClimberId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClimberId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TopGrade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TopGrade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalSends)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalSends)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeGymName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomeGymName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GymId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GymId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ClimberId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
