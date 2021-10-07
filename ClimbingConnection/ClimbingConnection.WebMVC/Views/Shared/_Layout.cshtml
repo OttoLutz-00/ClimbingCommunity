@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en-us">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +13,7 @@
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         @Html.ActionLink("ClimbingCommunity", "Index", "Home", new { area = "" }, new { @class = "navbar-brand ms-3" })
-        <button class="navbar-toggler collapsed me-2" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler me-2" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div id="navbar" class="navbar-collapse collapse">
@@ -26,7 +26,7 @@
                 }
             </ul>
 
-            @Html.Partial("_LoginPartial");
+            @Html.Partial("_LoginPartial")
 
         </div>
 
@@ -47,7 +47,7 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
-    
+    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>
