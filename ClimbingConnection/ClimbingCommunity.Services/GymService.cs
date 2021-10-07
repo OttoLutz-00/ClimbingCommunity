@@ -45,6 +45,7 @@ namespace ClimbingCommunity.Services
                     ctx.Gyms
                     .Select(e => new GymListItem()
                     {
+                        GymId = e.GymId,
                         Name = e.Name,
                         Location = e.Location,
                         NumberOfRoutes = e.NumberOfRoutes
@@ -60,7 +61,7 @@ namespace ClimbingCommunity.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
-                    ctx.Gyms.Single(e => e.OwnerId == _userId && e.GymId == id);
+                    ctx.Gyms.Single(e => e.GymId == id);
 
                 return new GymDetail()
                 {
@@ -77,7 +78,7 @@ namespace ClimbingCommunity.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var gym = ctx.Gyms.Single(e => e.OwnerId == _userId && e.GymId == model.GymId);
+                var gym = ctx.Gyms.Single(e => e.GymId == model.GymId);
 
                 gym.Name = model.Name;
                 gym.Description = model.Description;

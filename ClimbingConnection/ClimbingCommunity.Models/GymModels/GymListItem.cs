@@ -8,7 +8,7 @@ namespace ClimbingCommunity.Models.GymModels
 {
     public class GymListItem
     {
-
+        public int GymId { get; set; }
         public string Name { get; set; }
         public string Location { get; set; }
         public int NumberOfRoutes { get; set; }

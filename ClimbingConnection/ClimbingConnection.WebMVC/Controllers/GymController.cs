@@ -57,5 +57,57 @@ namespace ClimbingConnection.WebMVC.Controllers
 
             return RedirectToAction("Index");
         }
+
+        // GET: Gym/Details/{id}
+        [Authorize]
+        public ActionResult Details(int id)
+        {
+            var service = CreateGymService();
+            var model = service.GetGymById(id);
+            return View(model);
+        }
+
+        // GET: Gym/Edit/{id}
+        [Authorize]
+        public ActionResult Edit(int id)
+        {
+            var service = CreateGymService();
+            var gym = service.GetGymById(id);
+            var model = new GymEdit()
+            {
+                GymId = id,
+                Name = gym.Name,
+                Description = gym.Description,
+                Location = gym.Location
+            };
+            return View(model);
+        }
+
+        // POST: Gym/Edit/{id}
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, GymEdit model)
+        {
+            TempData.Keep();
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.GymId != id)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+                return View(model);
+            }
+
+            var service = CreateGymService();
+
+            if (service.UpdateGym(model))
+            {
+                TempData["SaveResult"] = "Your gym was updated.";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Your gym could not be updated.");
+            return View(model);
+        }
     }
 }

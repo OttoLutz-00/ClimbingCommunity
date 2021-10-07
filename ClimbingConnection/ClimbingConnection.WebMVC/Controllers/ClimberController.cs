@@ -62,7 +62,7 @@ namespace ClimbingConnection.WebMVC.Controllers
                 return View(model);
             }
             TempData["SaveResult"] = "Your Climber was created.";
-
+            
             return RedirectToAction("Index", "Home");
         }
 
@@ -121,6 +121,28 @@ namespace ClimbingConnection.WebMVC.Controllers
             return View(model);
         }
 
+        // GET: Climber/Delete/{id}
+        
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
+        {
+            TempData.Keep();
+            var service = CreateClimberService();
+            var model = service.GetClimberById(id);
+            return View(model);
+        }
+
+        // POST: Climber/Delete/{id}
+        [Authorize]
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteClimber(int id)
+        {
+            var service = CreateClimberService();
+            service.DeleteClimber(id);
+            return RedirectToAction("Index");
+        }
 
     }
 }
