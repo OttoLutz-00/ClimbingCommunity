@@ -4,10 +4,9 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Climber Details</h2>
 
 <div>
-    <h4>ClimberDetail</h4>
     <hr />
     @if (TempData["ClimberMessage"] != null){
         <div class="alert alert-success m-0 p-3 m-2" role="alert">
@@ -80,6 +79,9 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ClimberId }) |
+    @if (Model.ClimberId == (int)TempData.Peek("CurrentClimberId"))
+    {
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ClimberId })
+    }
     @Html.ActionLink("Back to List", "Index")
 </p>

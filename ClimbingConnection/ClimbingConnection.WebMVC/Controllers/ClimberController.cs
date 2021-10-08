@@ -24,7 +24,7 @@ namespace ClimbingConnection.WebMVC.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            TempData.Keep();
+            
             var service = CreateClimberService();
             var model = service.GetAllClimbers();
             return View(model);
@@ -34,7 +34,7 @@ namespace ClimbingConnection.WebMVC.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            TempData.Keep();
+           
             var service = CreateClimberService();
             bool hasClimber = service.ClimberHasCreatedProfile();
             if (hasClimber)
@@ -51,7 +51,7 @@ namespace ClimbingConnection.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ClimberCreate model)
         {
-            TempData.Keep();
+            
             if (!ModelState.IsValid) return View(model);
 
             var service = CreateClimberService();
@@ -69,9 +69,16 @@ namespace ClimbingConnection.WebMVC.Controllers
         // GET: Climber/Edit/{id}
         public ActionResult Edit(int id)
         {
-            TempData.Keep();
+            
             var service = CreateClimberService();
             var climber = service.GetClimberById(id);
+            int currentUsersClimberId = service.GetClimberId();
+            if (currentUsersClimberId != id)
+            {
+                TempData["ClimberMessage"] = "You cannot edit another user's climber profile.";
+                return RedirectToAction("Details", new { id=currentUsersClimberId});
+            }
+
             var model = new ClimberEdit()
             {
                 ClimberId = id,
@@ -89,7 +96,7 @@ namespace ClimbingConnection.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int? id, ClimberEdit model)
         {
-            TempData.Keep();
+            
             if (!ModelState.IsValid) return View(model);
 
             if (model.ClimberId != id)
@@ -103,7 +110,7 @@ namespace ClimbingConnection.WebMVC.Controllers
             if (service.UpdateClimber(model))
             {
                 TempData["SaveResult"] = "Your climber profile was updated.";
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             ModelState.AddModelError("", "Your climber profile could not be updated.");
@@ -115,9 +122,9 @@ namespace ClimbingConnection.WebMVC.Controllers
         [Authorize]
         public ActionResult Details(int id)
         {
-            TempData.Keep();
             var service = CreateClimberService();
             var model = service.GetClimberById(id);
+            TempData["CurrentClimberId"] = service.GetClimberId();
             return View(model);
         }
 
@@ -126,7 +133,7 @@ namespace ClimbingConnection.WebMVC.Controllers
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            TempData.Keep();
+            
             var service = CreateClimberService();
             var model = service.GetClimberById(id);
             return View(model);

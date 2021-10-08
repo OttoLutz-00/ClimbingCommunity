@@ -7,10 +7,10 @@
          <ul class="navbar-nav  ms-auto">
              <li class="nav-item p-2 py-1">
              <!--C: AUTHORIZED & CLIMBER-->
-            @if (TempData["HasProfile"] as bool? ?? false)
+            @if (TempData.Peek("HasProfile") as bool? ?? false)
              {
-                 string climberName = TempData["ClimberName"].ToString();
-                @Html.ActionLink("Hello " + climberName + "!", "Details", "Climber", new { id = TempData["ClimberId"]}, htmlAttributes: new { title = "My Profileeee"})
+                 string climberName = TempData.Peek("ClimberName").ToString();
+                @Html.ActionLink("Hello " + climberName + "!", "Details", "Climber", new { id = TempData.Peek("ClimberId")}, htmlAttributes: new { title = "My Profile"})
              }
              else
              {
