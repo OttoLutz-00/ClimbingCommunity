@@ -4,11 +4,11 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2 class="display-4 greentext">@Model.Name</h2>
 
 <div>
-    <h4>GymDetail</h4>
-    <hr />
+    
+    <hr class="bg-dark" />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)

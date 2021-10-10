@@ -4,12 +4,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>All Gyms</h2>
+<h2 class="greentext display-4">All Gyms</h2>
 
 <p>
-    @Html.ActionLink("Create New Gym", "Create")
+    Can't find a gym?    
+    @Html.ActionLink("Add a Gym", "Create", null,  htmlAttributes: new { @class="btn btn-outline-secondary ml-2 greentext", id="nopadding"})
 </p>
-<table class="table">
+<table class="table" style="color: whitesmoke;">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -35,9 +36,9 @@
             @Html.DisplayFor(modelItem => item.NumberOfRoutes)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item.GymId }) |
-            @Html.ActionLink("Details", "Details", new {  id=item.GymId }) |
-            @Html.ActionLink("Delete", "Delete", new {  id=item.GymId })
+            
+            @Html.ActionLink("View Gym", "Details", new {  id=item.GymId }, htmlAttributes: new { @class="btn btn-outline-secondary", id="nopadding"})
+            
         </td>
     </tr>
 }

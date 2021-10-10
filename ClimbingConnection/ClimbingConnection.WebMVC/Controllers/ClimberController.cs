@@ -42,6 +42,9 @@ namespace ClimbingConnection.WebMVC.Controllers
                 TempData["ClimberMessage"] = "You already have a climber profile.";
                 return RedirectToAction("Details", new { id=service.GetClimberId()});
             }
+            var gymService = new GymService(Guid.Parse(User.Identity.GetUserId()));
+            ViewBag.gymList = gymService.GetAllGyms();
+
             return View();
         }
 
@@ -86,6 +89,8 @@ namespace ClimbingConnection.WebMVC.Controllers
                 Bio = climber.Bio,
                 GymId = climber.GymId
             };
+            var gymService = new GymService(Guid.Parse(User.Identity.GetUserId()));
+            ViewBag.gymList = gymService.GetAllGyms();
 
             return View(model);
         }

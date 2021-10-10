@@ -15,7 +15,7 @@ namespace ClimbingCommunity.Models
         [Required]
         [MaxLength(250, ErrorMessage = "Bio must be 250 characters or less.")]
         public string Bio { get; set; }
-
+        [Range(1,1000)]
         [Display(Name ="Home Gym")]
         public int GymId { get; set; }
 

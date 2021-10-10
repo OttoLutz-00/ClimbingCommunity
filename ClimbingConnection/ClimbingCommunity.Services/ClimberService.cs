@@ -22,6 +22,9 @@ namespace ClimbingCommunity.Services
         // CREATE
         public bool CreateClimber(ClimberCreate model)
         {
+            // if somehow the user selects the disabled "select a home gym" option which has value = 0, make it the value of a valid gym(value = 1).
+            if (model.GymId == 0) model.GymId = 1;
+            
             var entity = new Climber()
             {
                 OwnerId = _userId,

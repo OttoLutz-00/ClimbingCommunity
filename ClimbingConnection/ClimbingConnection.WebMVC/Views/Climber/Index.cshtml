@@ -4,10 +4,10 @@
     ViewBag.Title = "All Climbers";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2 class="greentext display-4">@ViewBag.Title</h2>
 
 
-<table class="table">
+<table class="table" style="color: whitesmoke;">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Username)
@@ -40,7 +40,7 @@
         </td>
         <td>
             
-            @Html.ActionLink("Details", "Details", new { id=item.ClimberId }, htmlAttributes: new { @class="btn btn-outline-primary"})
+            @Html.ActionLink("View Profile", "Details", new { id=item.ClimberId }, htmlAttributes: new { @class="btn btn-outline-secondary", id="nopadding"})
             
         </td>
     </tr>
