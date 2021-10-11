@@ -62,8 +62,10 @@ namespace ClimbingConnection.WebMVC.Controllers
         [Authorize]
         public ActionResult Details(int id)
         {
+            
             var service = CreateGymService();
             var model = service.GetGymById(id);
+            TempData["gymid"] = id;
             return View(model);
         }
 
@@ -109,5 +111,9 @@ namespace ClimbingConnection.WebMVC.Controllers
             ModelState.AddModelError("", "Your gym could not be updated.");
             return View(model);
         }
+
+        // GET: Gym/Routes/{id}
+
+        // GET: Gym/Sends/{id}
     }
 }

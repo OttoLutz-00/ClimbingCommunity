@@ -61,6 +61,8 @@ namespace ClimbingConnection.WebMVC.Controllers
 
             if (!service.CreateClimber(model))
             {
+                var gymService = new GymService(Guid.Parse(User.Identity.GetUserId()));
+                ViewBag.gymList = gymService.GetAllGyms();
                 ModelState.AddModelError("", "Climber could not be created.");
                 return View(model);
             }
@@ -118,6 +120,8 @@ namespace ClimbingConnection.WebMVC.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
+            var gymService = new GymService(Guid.Parse(User.Identity.GetUserId()));
+            ViewBag.gymList = gymService.GetAllGyms();
             ModelState.AddModelError("", "Your climber profile could not be updated.");
             return View(model);
         }

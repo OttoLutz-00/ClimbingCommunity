@@ -26,7 +26,7 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        <td class="greentext">
             @Html.DisplayFor(modelItem => item.Username)
         </td>
         <td>
@@ -40,7 +40,7 @@
         </td>
         <td>
             
-            @Html.ActionLink("View Profile", "Details", new { id=item.ClimberId }, htmlAttributes: new { @class="btn btn-outline-secondary", id="nopadding"})
+            @Html.ActionLink("View Profile", "Details", new { id=item.ClimberId }, htmlAttributes: new { @class="btn btn-outline-secondary", id="nopadding", style="color: whitesmoke;"})
             
         </td>
     </tr>

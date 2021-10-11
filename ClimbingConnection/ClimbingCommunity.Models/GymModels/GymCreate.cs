@@ -11,10 +11,13 @@ namespace ClimbingCommunity.Models.GymModels
     {
 
         [Required]
+        [MaxLength(80, ErrorMessage = "Gym name must be 80 characters or less.")]
         public string Name { get; set; }
         [Required]
+        [MaxLength(500, ErrorMessage = "Description must be 500 characters or less.")]
         public string Description { get; set; }
         [Required]
+        [MaxLength(200, ErrorMessage = "Location must be 200 characters or less.")]
         public string Location { get; set; }
 
     }

@@ -69,7 +69,7 @@
 <p>
     @if (Model.ClimberId == (int)TempData.Peek("CurrentClimberId"))
     {
-        @Html.ActionLink("Edit Profile", "Edit", new { id = Model.ClimberId }, htmlAttributes: new { @class = "btn btn-outline-primary" })
+        @Html.ActionLink("Edit Profile", "Edit", new { id = Model.ClimberId }, htmlAttributes: new { @class = "btn btn-outline-primary", style="padding: .5rem!important;" })
     }
     @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-outline-secondary greentext", id = "nopadding" })
 </p>
