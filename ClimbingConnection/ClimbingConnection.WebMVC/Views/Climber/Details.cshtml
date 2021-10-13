@@ -3,70 +3,51 @@
 @{
     ViewBag.Title = "Details";
 }
-<h2 class="display-4 greentext d-inline">@Model.Username</h2>
+<h2 class="display-3 greentext d-inline">@Model.Username</h2>
 
-<h2 class="display-4 d-inline text-secondary">'s Profile</h2>
+<h2 class="display-3 d-inline text-secondary">'s Profile</h2>
 
 
 <div>
     <hr class="bg-dark">
     @if (TempData["ClimberMessage"] != null)
     {
-        <div class="alert alert-success m-0 p-3 m-2" role="alert">
+    <div class="alert alert-success m-0 p-3 m-2" role="alert">
 
-            <p class="d-inline ms-2">@TempData["ClimberMessage"]</p>
+        <p class="d-inline ms-2">@TempData["ClimberMessage"]</p>
 
-            <button type="button" class="btn btn-success close align-top" data-dismiss="alert">
-                <img src="~/Assets/bs-icons/x-lg.svg" alt="Alternate Text" class="d-inline align-text-bottom align-middle px-1 pb-1" width="25px" />
-            </button>
+        <button type="button" class="btn btn-success close align-top" data-dismiss="alert">
+            <img src="~/Assets/bs-icons/x-lg.svg" alt="Alternate Text" class="d-inline align-text-bottom align-middle px-1 pb-1" width="25px" />
+        </button>
 
-        </div>
+    </div>
     }
-    <dl class="dl-horizontal">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Username)
-        </dd>
+    <p class="mb-0" style="font-size: x-large">
+        · @Html.DisplayFor(model => model.Bio)
+    </p>
+    <div>
+    <p class="d-inline" style="font-size:x-large">Top grade:</p>
+    <p class="d-inline greentext " style="font-size: xx-large">V @Html.DisplayFor(model => model.TopGrade)</p>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Bio)
-        </dt>
+    <div>
+    <p class="d-inline" style="font-size:x-large">Total sends:</p>
+    <p class="d-inline greentext " style="font-size: xx-large">@Html.DisplayFor(model => model.TotalSends)</p>
+    </div>
+    
+    <div>
+    <p class="d-inline mt-2" style="font-size: x-large">
+        @Html.DisplayNameFor(model => model.HomeGymName): 
+    </p>
+    <p class="d-inline greentext" style="font-size: xx-large">
+        @Html.DisplayFor(model => model.HomeGymName)
+    </p>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Bio)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TopGrade)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TopGrade)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TotalSends)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TotalSends)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HomeGymName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HomeGymName)
-        </dd>
-
-    </dl>
 </div>
-<p>
+<p class="mt-4">
     @if (Model.ClimberId == (int)TempData.Peek("CurrentClimberId"))
     {
         @Html.ActionLink("Edit Profile", "Edit", new { id = Model.ClimberId }, htmlAttributes: new { @class = "btn btn-outline-primary", style="padding: .5rem!important;" })

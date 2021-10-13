@@ -36,8 +36,12 @@ namespace ClimbingCommunity.Services
 
             using (var ctx = new ApplicationDbContext())
             {
+                //Update number of routes in the gym based on IsOnWall, in the case of creating a new route, it is always on the wall, so add 1 to the total routes in the gym.
+                var gym = ctx.Gyms.Single(e => e.GymId == entity.GymId);
+                gym.NumberOfRoutes++;
+
                 ctx.Routes.Add(entity);
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() <= 2;
             }
         }
 
@@ -68,12 +72,12 @@ namespace ClimbingCommunity.Services
             }
         }
 
-        // READ BY ID (needed only as a helper method)
+        // READ BY ID (maybe needed only as a helper method)
         public RouteListItem GetRouteById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Routes.Single(e => e.GymId == id);
+                var query = ctx.Routes.Single(e => e.RouteId == id);
 
                 var model = new RouteListItem()
                 {
@@ -131,12 +135,27 @@ namespace ClimbingCommunity.Services
             {
                 var entity = ctx.Routes.Single(e => e.RouteId == model.RouteId);
 
+                var gym = ctx.Gyms.Single(e => e.GymId == entity.GymId);
+                //if the route was up, and is being taken down:
+                if (entity.IsOnWall == true && model.IsOnWall == false)
+                {
+                    gym.NumberOfRoutes--;
+                }
+                //if the route was down, and is being put back up:
+                else if (entity.IsOnWall == false && model.IsOnWall == true)
+                {
+                    gym.NumberOfRoutes++;
+                }
+                
+
                 entity.Name = model.Name;
                 entity.Description = model.Description;
                 entity.Grade = model.Grade;
                 entity.IsOnWall = model.IsOnWall;
 
-                return ctx.SaveChanges() == 1;
+
+
+                return ctx.SaveChanges() <= 2;
             }
         }
     }

@@ -24,7 +24,7 @@ namespace ClimbingCommunity.Models.RouteModels
         public string Description { get; set; }
 
         [Required]
-        [Range(0,17, ErrorMessage = "Grade must be between 1 and 17.")]
+        [Range(0,17, ErrorMessage = "Grade must be between 0 and 17.")]
         public int Grade { get; set; }
     }
 }
