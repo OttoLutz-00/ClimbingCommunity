@@ -11,78 +11,79 @@
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <hr / class="bg-dark">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.GymId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @{
-                    var selectList = new List<SelectListItem>();
+<div class="form-horizontal">
+    <hr / class="bg-dark">
 
-                    selectList.Add(new SelectListItem { Text = "Select the Gym", Value = "0", Selected = true, Disabled = true });
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.GymId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @{
+                var selectList = new List<SelectListItem>();
 
-                    foreach (var item in ViewBag.gymList)
-                    {
-                        selectList.Add(new SelectListItem { Text = item.Name, Value = item.GymId.ToString() });
-                    }
+                selectList.Add(new SelectListItem { Text = "Select the Gym", Value = "0", Selected = true, Disabled = true });
 
+                foreach (var item in ViewBag.gymList)
+                {
+                    selectList.Add(new SelectListItem { Text = item.Name, Value = item.GymId.ToString() });
                 }
-                @Html.DropDownListFor(model => model.GymId, selectList, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.GymId, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ClimberId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @{
-                    var selectListClimbers = new List<SelectListItem>();
-
-                    selectListClimbers.Add(new SelectListItem { Text = "Select a Setter", Value = "0", Selected = true, Disabled = true });
-
-                    foreach (var item in ViewBag.climberList)
-                    {
-                        selectListClimbers.Add(new SelectListItem { Text = item.Username, Value = item.ClimberId.ToString() });
-                    }
-
-                }
-                @Html.DropDownListFor(model => model.ClimberId, selectListClimbers, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ClimberId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Grade, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Grade, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Grade, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-outline-secondary greentext" id="nopadding" />
-                @Html.ActionLink("Back to List", "Index",null, htmlAttributes: new { @class="btn btn-outline-secondary"})
-            </div>
+            }
+            @Html.DropDownListFor(model => model.GymId, selectList, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.GymId, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ClimberId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @{
+                var selectListClimbers = new List<SelectListItem>();
+
+                selectListClimbers.Add(new SelectListItem { Text = "Select a Setter", Value = "0", Selected = true, Disabled = true });
+
+                foreach (var item in ViewBag.climberList)
+                {
+                    selectListClimbers.Add(new SelectListItem { Text = item.Username, Value = item.ClimberId.ToString() });
+                }
+
+            }
+            @Html.DropDownListFor(model => model.ClimberId, selectListClimbers, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ClimberId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Grade, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Grade, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Grade, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-outline-secondary greentext" id="nopadding" />
+            @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-outline-secondary" })
+        </div>
+    </div>
+</div>
 }
 
 

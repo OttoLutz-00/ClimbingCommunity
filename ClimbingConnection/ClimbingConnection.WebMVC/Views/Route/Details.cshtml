@@ -46,16 +46,21 @@
         <p class="d-inline greentext" style="font-size: x-large">@Html.DisplayFor(model => model.DateSet)</p>
     </div>
 
-    <div>
+    <div class="mb-3">
         <p class="d-inline greentext" style="font-size: x-large">@Html.DisplayFor(model => model.TotalSends)</p>
         <p class="d-inline" style="font-size: x-large">total sends </p>
     </div>
 </div>
-<p>@if (Model.ClimberId == (int)TempData.Peek("CurrentClimberId"))
-{
-    @Html.ActionLink("Edit", "Edit", new { id = Model.RouteId }, htmlAttributes: new { @class="btn btn-outline-primary"})
-}
-    @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class="btn btn-outline-secondary", id="nopadding"})
 
-    @Html.ActionLink("Log Send on This Route", "Create", "Send", htmlAttributes: new { @class = "btn btn-outline-secondary greentext", id = "nopadding" })
-</p>
+<div class="d-flex justify-content-around">
+
+@if (Model.ClimberId == (int)TempData.Peek("CurrentClimberId"))
+{
+    @Html.ActionLink("Edit Route", "Edit", new { id = Model.RouteId }, htmlAttributes: new { @class="btn btn-outline-primary rounded-pill", style = "padding: 3rem!important; font-size: x-large!important;" })
+}
+    @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class="btn btn-outline-secondary rounded-pill", id="nopadding", style = "padding: 3rem!important; font-size: x-large!important;" })
+
+    @Html.ActionLink("Log Send on This Route", "Create", "Send",null, htmlAttributes: new { @class = "btn btn-outline-secondary greentext rounded-pill", id = "nopadding", style= "padding: 3rem!important; font-size: x-large!important;" })
+
+
+</div>

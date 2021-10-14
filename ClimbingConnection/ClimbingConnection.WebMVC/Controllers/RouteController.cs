@@ -23,6 +23,13 @@ namespace ClimbingConnection.WebMVC.Controllers
         // GET: Route/Index
         public ActionResult Index()
         {
+
+            if (!(TempData.Peek("HasProfile") as bool? ?? false))
+            {
+                TempData["ClimberMessage"] = "Please complete your profile to access Gyms, Climbers, and Routes";
+                return RedirectToAction("Create", "Climber");
+            }
+
             var service = CreateRouteService();
             var model = service.GetAllRoutes();
             return View(model);
