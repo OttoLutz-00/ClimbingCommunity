@@ -60,6 +60,7 @@
     <Compile Include="ClimberService.cs" />
     <Compile Include="GymService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RouteService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

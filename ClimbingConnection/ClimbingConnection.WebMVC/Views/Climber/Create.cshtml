@@ -13,6 +13,23 @@
     
 <div class="form-horizontal">
     <hr / class="bg-dark">
+
+
+    @if (TempData["ClimberMessage"] != null)
+    {
+        <div class="alert alert-info alert-dismissible m-0 p-3 m-2" role="alert">
+
+            <p class="d-inline ms-2">@TempData["ClimberMessage"]</p>
+
+            <button type="button" class="btn btn-outline-info close align-top mt-auto" data-dismiss="alert">
+                <img src="~/Assets/bs-icons/x-lg.svg" alt="Alternate Text" class="d-inline align-text-bottom align-middle my-1" width="25px" />
+            </button>
+
+        </div>
+    }
+
+
+
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -34,10 +51,10 @@
     <div class="form-group">
         @Html.LabelFor(model => model.GymId, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @{ 
+            @{
                 var selectList = new List<SelectListItem>();
 
-                selectList.Add(new SelectListItem { Text = "Select a Home Gym", Value = "0", Selected=true, Disabled=true });
+                selectList.Add(new SelectListItem { Text = "Select a Home Gym", Value = "0", Selected = true, Disabled = true });
 
                 foreach (var item in ViewBag.gymList)
                 {
@@ -45,7 +62,7 @@
                 }
 
             }
-            @Html.DropDownListFor(model => model.GymId, selectList, htmlAttributes: new { @class="form-control"})
+            @Html.DropDownListFor(model => model.GymId, selectList, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.GymId, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -54,7 +71,7 @@
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Save" class="btn btn-outline-secondary greentext" id="nopadding" />
-            @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class="btn btn-outline-secondary"})
+            @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-outline-secondary" })
         </div>
     </div>
 </div>

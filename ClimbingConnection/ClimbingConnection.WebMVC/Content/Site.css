@@ -40,8 +40,13 @@ textarea {
     padding: 0 !important;
 }
 
-    #nopadding:hover {
-        color: whitesmoke !important;
-        border-color: #9FFF1C !important;
-        background-color: rgb(98 98 98 / 0.4) !IMPORTANT;
-    }
+#nopadding:hover {
+    color: whitesmoke !important;
+    border-color: #9FFF1C !important;
+    background-color: rgb(98 98 98 / 0.4) !IMPORTANT;
+}
+
+#check-box {
+    width: 2rem !IMPORTANT;
+    height: 2rem !IMPORTANT;
+}

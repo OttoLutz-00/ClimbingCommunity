@@ -34,6 +34,8 @@ namespace ClimbingConnection.Data
 
         public DbSet<Climber> Climbers { get; set; }
         public DbSet<Gym> Gyms { get; set; }
+        public DbSet<Route> Routes { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
