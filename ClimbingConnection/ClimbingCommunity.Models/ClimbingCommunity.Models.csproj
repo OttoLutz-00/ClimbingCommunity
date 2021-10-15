@@ -63,6 +63,8 @@
     <Compile Include="RouteModels\RouteCreate.cs" />
     <Compile Include="RouteModels\RouteEdit.cs" />
     <Compile Include="RouteModels\RouteListItem.cs" />
+    <Compile Include="SendModels\SendCreate.cs" />
+    <Compile Include="SendModels\SendListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
