@@ -101,7 +101,7 @@ namespace ClimbingCommunity.Services
             }
         }
 
-        // READ BY GYMID
+        // READ BY GymId
         public IEnumerable<RouteListItem> GetAllRoutesByGymId(int id)
         {
             using (var ctx = new ApplicationDbContext())

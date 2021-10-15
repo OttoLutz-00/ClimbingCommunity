@@ -61,6 +61,7 @@
     <Compile Include="GymService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RouteService.cs" />
+    <Compile Include="SendService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

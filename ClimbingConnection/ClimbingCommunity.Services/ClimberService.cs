@@ -147,15 +147,15 @@ namespace ClimbingCommunity.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                int number = 0;
+                int id = 0;
                 bool ownerHasClimber = ctx.Climbers.Where(e => e.OwnerId == _userId).SingleOrDefault() != null;
 
                 if (ownerHasClimber)
                 {
-                    number = ctx.Climbers.Where(e => e.OwnerId == _userId).SingleOrDefault().ClimberId;
+                    id = ctx.Climbers.Where(e => e.OwnerId == _userId).SingleOrDefault().ClimberId;
                 }
 
-                return number;
+                return id;
 
             }
         }

@@ -60,8 +60,6 @@ namespace ClimbingConnection.WebMVC.Controllers
         [Authorize]
         public ActionResult Create()
         {
-
-            var service = CreateRouteService();
             var gymService = new GymService(Guid.Parse(User.Identity.GetUserId()));
             ViewBag.gymList = gymService.GetAllGyms();
             var climberService = new ClimberService(Guid.Parse(User.Identity.GetUserId()));

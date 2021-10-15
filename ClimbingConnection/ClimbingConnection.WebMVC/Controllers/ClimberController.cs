@@ -137,6 +137,24 @@ namespace ClimbingConnection.WebMVC.Controllers
         [Authorize]
         public ActionResult Details(int id)
         {
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var climberService = new ClimberService(Guid.Parse(User.Identity.GetUserId()));
+                if (climberService.ClimberHasCreatedProfile())
+                {
+                    TempData["HasProfile"] = true;
+                    TempData["ClimberName"] = climberService.GetClimberName();
+                    TempData["ClimberId"] = climberService.GetClimberId();
+                }
+                else
+                {
+                    TempData["HasProfile"] = false;
+                }
+            }
+
+            
+
             var service = CreateClimberService();
             var model = service.GetClimberById(id);
             TempData["CurrentClimberId"] = service.GetClimberId();
