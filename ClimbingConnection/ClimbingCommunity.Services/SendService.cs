@@ -40,6 +40,9 @@ namespace ClimbingCommunity.Services
                 };
 
                 ctx.Sends.Add(entity);
+
+                ctx.Climbers.Single(e => e.ClimberId == id).TotalSends++;
+                ctx.Routes.Single(e => e.RouteId == entity.RouteId).TotalSends++;
                 return ctx.SaveChanges() <= 2;
 
             }
@@ -82,6 +85,69 @@ namespace ClimbingCommunity.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var query = ctx.Sends.Where(e => e.GymId == id).Select(e => new SendListItem()
+                {
+                    // for send info
+                    SendId = e.SendId,
+                    RouteId = e.RouteId,
+                    ClimberId = e.ClimberId,
+                    Attempts = e.Attempts,
+                    Description = e.Description,
+                    SuggestedGrade = e.SuggestedGrade,
+                    DateSent = e.DateSent,
+                    //for climber info
+                    ClimberUsername = e.Climber.Username,
+                    // for route info
+                    RouteName = e.Route.Name,
+                    RouteGrade = e.Route.Grade,
+                    // for gym info
+                    GymName = e.Gym.Name,
+                    GymLocation = e.Gym.Location,
+                    GymDescription = e.Gym.Description,
+                    GymNumberOfRoutes = e.Gym.NumberOfRoutes
+                });
+
+                return query.ToList();
+            }
+        }
+
+        // READ BY ClimberId
+        public IEnumerable<SendListItem> GetAllSendsByClimberId(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx.Sends.Where(e => e.ClimberId == id).Select(e => new SendListItem()
+                {
+                    // for send info
+                    SendId = e.SendId,
+                    RouteId = e.RouteId,
+                    ClimberId = e.ClimberId,
+                    Attempts = e.Attempts,
+                    Description = e.Description,
+                    SuggestedGrade = e.SuggestedGrade,
+                    DateSent = e.DateSent,
+                    //for climber info
+                    ClimberUsername = e.Climber.Username,
+                    // for route info
+                    RouteName = e.Route.Name,
+                    RouteGrade = e.Route.Grade,
+                    // for gym info
+                    GymName = e.Gym.Name,
+                    GymLocation = e.Gym.Location,
+                    GymDescription = e.Gym.Description,
+                    GymNumberOfRoutes = e.Gym.NumberOfRoutes
+                });
+
+                return query.ToList();
+            }
+        }
+
+
+        // READ BY RouteId
+        public IEnumerable<SendListItem> GetAllSendsByRouteId(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx.Sends.Where(e => e.RouteId == id).Select(e => new SendListItem()
                 {
                     // for send info
                     SendId = e.SendId,
