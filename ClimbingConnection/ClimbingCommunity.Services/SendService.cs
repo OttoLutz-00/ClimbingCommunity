@@ -28,11 +28,15 @@ namespace ClimbingCommunity.Services
                 bool ownerHasClimber = ctx.Climbers.Where(e => e.OwnerId == _userId).SingleOrDefault() != null;
                 if (ownerHasClimber) id = ctx.Climbers.Where(e => e.OwnerId == _userId).SingleOrDefault().ClimberId;
 
+                // get GymId from Route
+                var gymId = ctx.Routes.Single(e => e.RouteId == model.RouteId).GymId;
+
                 var entity = new Send()
                 {
                     OwnerId = _userId,
                     RouteId = model.RouteId,
                     ClimberId = id,
+                    GymId = gymId,
                     Attempts = model.Attempts,
                     Description = model.Description,
                     SuggestedGrade = model.SuggestedGrade,
@@ -43,7 +47,7 @@ namespace ClimbingCommunity.Services
 
                 ctx.Climbers.Single(e => e.ClimberId == id).TotalSends++;
                 ctx.Routes.Single(e => e.RouteId == entity.RouteId).TotalSends++;
-                return ctx.SaveChanges() <= 2;
+                return ctx.SaveChanges() <= 5;
 
             }
 
@@ -57,18 +61,19 @@ namespace ClimbingCommunity.Services
                 {
                     // for send info
                     SendId = e.SendId,
-                    RouteId = e.RouteId,
-                    ClimberId = e.ClimberId,
                     Attempts = e.Attempts,
                     Description = e.Description,
                     SuggestedGrade = e.SuggestedGrade,
                     DateSent = e.DateSent,
                     //for climber info
+                    ClimberId = e.ClimberId,
                     ClimberUsername = e.Climber.Username,
                     // for route info
+                    RouteId = e.RouteId,
                     RouteName = e.Route.Name,
                     RouteGrade = e.Route.Grade,
                     // for gym info
+                   
                     GymName = e.Gym.Name,
                     GymLocation = e.Gym.Location,
                     GymDescription = e.Gym.Description,

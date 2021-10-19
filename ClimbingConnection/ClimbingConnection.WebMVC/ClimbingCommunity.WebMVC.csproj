@@ -178,6 +178,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RouteController.cs" />
+    <Compile Include="Controllers\SendController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -360,6 +361,8 @@
     <Content Include="Views\Route\Details.cshtml" />
     <Content Include="Views\Route\Edit.cshtml" />
     <Content Include="Views\Route\Gym.cshtml" />
+    <Content Include="Views\Send\Create.cshtml" />
+    <Content Include="Views\Send\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

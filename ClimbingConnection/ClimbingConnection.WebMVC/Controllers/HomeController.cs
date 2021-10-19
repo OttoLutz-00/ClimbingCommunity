@@ -20,6 +20,7 @@ namespace ClimbingConnection.WebMVC.Controllers
                     TempData["HasProfile"] = true;
                     TempData["ClimberName"] = service.GetClimberName();
                     TempData["ClimberId"] = service.GetClimberId();
+                    TempData["GymId"] = service.GetClimberById((int)TempData.Peek("ClimberId")).GymId;
                 }
                 else
                 {
