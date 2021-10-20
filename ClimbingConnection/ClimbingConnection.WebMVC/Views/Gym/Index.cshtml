@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ClimbingCommunity.Models.GymModels.GymListItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="greentext display-4">All Gyms</h2>
+
+<p>
+    Can't find a gym?    
+    @Html.ActionLink("Add a Gym", "Create")
+</p>
+<table class="table" style="color: whitesmoke;">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfRoutes)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td class="greentext">
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfRoutes)
+        </td>
+        <td>
+            
+            @Html.ActionLink("View Gym", "Details", new {  id=item.GymId }, htmlAttributes: new { @class="btn btn-outline-secondary", id="nopadding", style="color: whitesmoke;"})
+            
+        </td>
+    </tr>
+}
+
+</table>

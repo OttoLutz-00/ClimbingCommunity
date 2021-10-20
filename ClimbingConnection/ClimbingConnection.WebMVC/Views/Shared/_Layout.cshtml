@@ -1,44 +1,82 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en-us">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - ClimbingCommunity</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body>
+<body style="background-color: rgb(28 28 28); color: whitesmoke">
+    <style>
+
+        #transparentNav {
+            background-color: rgb(98 98 98 / 0.4) !IMPORTANT;
+            color: #9FFF1C !important;
+            font-size: x-large!important;
+        }
+
+        .greentext {
+            color: #9FFF1C !important;
+        }
+
+        #nopadding {
+            
+            border-color: #9FFF1C !important;
+            font-size: large !important;
+            padding: .5rem!important;
+        }
+
+        #nopadding:hover {
+            color: whitesmoke!important;
+            
+            border-color: #9FFF1C !important;
+            background-color: rgb(98 98 98 / 0.4) !IMPORTANT;
+        }
+        
+
+    </style>
 
 
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        @Html.ActionLink("ClimbingCommunity", "Index", "Home", new { area = "" }, new { @class = "navbar-brand ms-3" })
-        <button class="navbar-toggler collapsed me-2" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <nav id="transparentNav" class="navbar navbar-expand-md navbar-dark fixed-top bg-transparent")">
+        @Html.ActionLink("ClimbingCommunity", "Index", "Home", new { area = "" }, new { @class = "navbar-brand ms-3 display-1 ", style= "color: #9FFF1C!important; font-size: xx-large!important;" })
+        <button class="navbar-toggler me-2" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active p-2 py-1">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav - link" })</li>
-                <li class="nav-item p-2 py-1">@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav - link" })</li>
-                <li class="nav-item p-2 py-1">@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav - link" })</li>
+        <div id="navbar" style="color: #9FFF1C!important;" class="navbar-collapse collapse justify-content-between">
+            <ul class="navbar-nav me-auto p-0">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item active p-2 py-1" style="border-color: #9FFF1C;">@Html.ActionLink("Gyms", "Index", "Gym", new { area = "" }, new { @class = "nav - link btn btn-outline-secondary", style = "color: #9FFF1C; padding: 1rem;", id = "nopadding" })</li>
+                    <li class="nav-item p-2 py-1" style="border-color: #9FFF1C">@Html.ActionLink("Routes", "Index", "Route", new { area = "" }, new { @class = "nav - link btn btn-outline-secondary", style = "color: #9FFF1C; padding: 1rem;", id = "nopadding" })</li>
+                    <li class="nav-item p-2 py-1" style="border-color: #9FFF1C">@Html.ActionLink("Climbers", "Index", "Climber", new { area = "" }, new { @class = "nav - link btn btn-outline-secondary", style = "color: #9FFF1C; padding: 1rem;", id = "nopadding" })</li>
+                    <li class="nav-item p-2 py-1" style="border-color: #9FFF1C">@Html.ActionLink("Sends", "Index", "Send", new { area = "" }, new { @class = "nav - link btn btn-outline-secondary", style = "color: #9FFF1C; padding: 1rem;", id = "nopadding" })</li>
+                }
             </ul>
+
+            @Html.Partial("_LoginPartial")
+
         </div>
+
     </nav>
 
 
-    <div class="container body-content">
+
+    <div class="container body-content mt-5">
 
         @RenderBody()
 
-        <hr />
+        <hr / class="bg-dark">
 
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - ClimbingCommunity</p>
         </footer>
 
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>

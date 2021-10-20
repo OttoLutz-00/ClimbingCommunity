@@ -1,0 +1,12 @@
+﻿@model System.DateTimeOffset?
+
+<span>
+    @if (Model.HasValue)
+    {
+        @Model.Value.LocalDateTime.ToString("g")
+    }
+    else
+    {
+        <p class="text-muted">You shouldn't see this text.</p>
+    }
+</span>

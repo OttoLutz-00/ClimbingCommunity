@@ -1,0 +1,80 @@
+﻿@model ClimbingCommunity.Models.ClimberModels.ClimberDetail
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete Climber</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ClimberDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ClimberId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClimberId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TopGrade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TopGrade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalSends)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalSends)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HomeGymName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HomeGymName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GymId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GymId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,30 @@
+﻿@model ClimbingCommunity.Models.GymModels.GymDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="display-3 greentext mb-0">@Model.Name</h2>
+<p>  @Html.DisplayFor(model => model.Location)</p>
+<hr / class="bg-dark">
+<div>
+    <p class="" style="font-size: x-large">
+        · @Html.DisplayFor(model => model.Description)
+    </p>
+    <p class="d-inline greentext ml-auto" style="font-size: xx-large">@Html.DisplayFor(model => model.NumberOfRoutes)</p>
+    <p class="d-inline" style="font-size: x-large">routes up right now.</p>
+</div>
+
+<div class="container d-flex justify-content-around mb-5 mt-3">
+    @{ 
+        int gymid = (int)TempData.Peek("gymid");
+    }
+
+
+    @Html.ActionLink("Back to Gyms", "Index", null, htmlAttributes: new { @class = "btn btn-outline-secondary mt-4 p-5 rounded-pill", id = "", style="color: whitesmoke; font-size: x-large;" })
+    @Html.ActionLink("View Routes", "Gym","Route", new { id=gymid}, htmlAttributes: new { @class = "btn btn-outline-secondary mt-4 greentext p-5 rounded-pill", id = "", style = "border-color: #9FFF1C !important; font-size: x-large;" })
+    @Html.ActionLink("View Sends", "Gym", "Send" , new { id=gymid }, htmlAttributes: new { @class = "btn btn-outline-secondary mt-4 greentext p-5 rounded-pill", id = "", style = "border-color: #9FFF1C !important; font-size: x-large;" })
+
+
+
+</div>

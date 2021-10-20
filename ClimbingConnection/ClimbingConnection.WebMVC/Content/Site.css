@@ -22,3 +22,31 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/* */
+#transparentNav {
+    background-color: rgb(236 21 21 / 0.96) !IMPORTANT;
+    color: #9FFF1C!important;
+    font-size: x-large !important;
+}
+
+.greentext {
+    color: #9FFF1C !important;
+}
+
+#nopadding {
+    border-color: #9FFF1C !important;
+    font-size: large !important;
+    padding: 0 !important;
+}
+
+#nopadding:hover {
+    color: whitesmoke !important;
+    border-color: #9FFF1C !important;
+    background-color: rgb(98 98 98 / 0.4) !IMPORTANT;
+}
+
+#check-box {
+    width: 2rem !IMPORTANT;
+    height: 2rem !IMPORTANT;
+}

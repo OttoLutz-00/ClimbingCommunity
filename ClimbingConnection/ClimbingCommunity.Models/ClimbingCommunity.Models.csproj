@@ -55,7 +55,16 @@
     <Compile Include="ClimberModels\ClimberDetail.cs" />
     <Compile Include="ClimberModels\ClimberEdit.cs" />
     <Compile Include="ClimberModels\ClimberListItem.cs" />
+    <Compile Include="GymModels\GymCreate.cs" />
+    <Compile Include="GymModels\GymDetail.cs" />
+    <Compile Include="GymModels\GymEdit.cs" />
+    <Compile Include="GymModels\GymListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RouteModels\RouteCreate.cs" />
+    <Compile Include="RouteModels\RouteEdit.cs" />
+    <Compile Include="RouteModels\RouteListItem.cs" />
+    <Compile Include="SendModels\SendCreate.cs" />
+    <Compile Include="SendModels\SendListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

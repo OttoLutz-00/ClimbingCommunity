@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ClimbingCommunity.Models.ClimberModels.ClimberListItem>
+
+@{
+    ViewBag.Title = "All Climbers";
+}
+
+<h2 class="greentext display-4">@ViewBag.Title</h2>
+
+
+<table class="table" style="color: whitesmoke;">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TopGrade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalSends)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HomeGymName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td class="greentext">
+            @Html.DisplayFor(modelItem => item.Username)
+        </td>
+        <td>
+            <p class="d-inline">V</p>@Html.DisplayFor(modelItem => item.TopGrade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalSends)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HomeGymName)
+        </td>
+        <td>
+            
+            @Html.ActionLink("View Profile", "Details", new { id=item.ClimberId }, htmlAttributes: new { @class="btn btn-outline-secondary", id="nopadding", style="color: whitesmoke;"})
+            
+        </td>
+    </tr>
+}
+
+</table>

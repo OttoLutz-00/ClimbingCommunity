@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ClimbingCommunity.Models.SendModels.SendListItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<p class="display-4 greentext d-inline">All Sends </p> <div class="display-4 mb-1 d-inline text-center" style=" color: #a8a8a8;">on </div> <p class="display-4 greentext d-inline"> @Model.First().RouteName <p class="d-inline display-4" style="color: whitesmoke;"> V @Model.First().RouteGrade</p></p>
+
+<p>
+    Forgot to log a send? @Html.ActionLink("Log new Send", "Create")
+</p>
+
+<hr class="bg-dark" />
+
+
+
+@foreach (var item in Model)
+{
+
+    <div class="container border border-light rounded mt-4 mb-5 " style="border-color: #5b5b5b !important; border-width: 4px!important; border-radius: 20px!important;">
+
+        <div class="d-flex justify-content-start">
+
+            <p class="greentext m-0 px-2 text-center" style="font-size: 2rem; font-weight: 100">@Html.DisplayFor(modelItem => item.ClimberUsername)</p>
+
+            <p class="px-3 mt-auto mb-1 d-inline text-center" style="font-size: 1.5rem; color: #a8a8a8;">sent</p>
+
+            <div class="mt-auto px-2">
+                <p class="d-inline greentext my-auto text-center" style="font-size: 2rem; font-weight: 100">@Html.DisplayFor(modelItem => item.RouteName)</p>
+                <p class="d-inline my-auto text-center" style="font-weight: 400; font-size: 1.5rem;">V @Html.DisplayFor(modelItem => item.RouteGrade)</p>
+            </div>
+
+            <p class="mt-auto mb-1 px-3 text-center" style="font-size: 1.5rem; color: #a8a8a8">at</p>
+
+            <p class="greentext mt-auto mb-0 px-2 text-xenter" style="font-size: 2rem; font-weight: 100">@Html.DisplayFor(modelItem => item.GymName)</p>
+
+        </div>
+
+        <hr class="bg-dark m-0" />
+
+
+        <div class="d-flex justify-content-start">
+
+            <div class="my-2" style="width: 40%">
+
+                <p class="mb-0 d-inline" style="font-size: x-large">Attempts: <p class="greentext d-inline" style="font-size: x-large">@Html.DisplayFor(modelItem => item.Attempts)</p></p>
+                <p class="mb-0 d-inline" style="font-size: x-large">Suggested Grade: <p class="greentext d-inline" style="font-size: x-large">V @Html.DisplayFor(modelItem => item.SuggestedGrade)</p></p>
+                <p class="mb-0 d-inline" style="font-size: x-large">Date Sent: <p class="greentext d-inline" style="font-size: x-large">@Html.DisplayFor(modelItem => item.DateSent)</p></p>
+
+            </div>
+
+            <div style="border-left: 1.5px solid #32343c; width: 3%" class="mx-2 my-2"></div>
+
+            <p class="pl-3 pt-3" style="font-size: x-large; width: 50%"> · @Html.DisplayFor(modelItem => item.Description)</p>
+
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+}
+

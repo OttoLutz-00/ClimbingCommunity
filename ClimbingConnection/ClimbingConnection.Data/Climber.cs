@@ -22,8 +22,8 @@ namespace ClimbingConnection.Data
         [Required]
         public string Bio { get; set; }
         [Display(Name = "Top Grade")]
-        public int TopGrade { get; }
+        public int TopGrade { get; set; }
         [Display(Name = "Total Sends")]
-        public int TotalSends { get; }
+        public int TotalSends { get; set; }
     }
 }
