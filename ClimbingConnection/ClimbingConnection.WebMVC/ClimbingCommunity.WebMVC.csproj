@@ -363,6 +363,9 @@
     <Content Include="Views\Route\Gym.cshtml" />
     <Content Include="Views\Send\Create.cshtml" />
     <Content Include="Views\Send\Index.cshtml" />
+    <Content Include="Views\Send\Gym.cshtml" />
+    <Content Include="Views\Send\Route.cshtml" />
+    <Content Include="Views\Send\Climber.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

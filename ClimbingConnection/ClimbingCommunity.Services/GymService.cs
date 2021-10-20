@@ -43,6 +43,7 @@ namespace ClimbingCommunity.Services
             {
                 var query =
                     ctx.Gyms
+                    .OrderByDescending(e => e.GymId)
                     .Select(e => new GymListItem()
                     {
                         GymId = e.GymId,

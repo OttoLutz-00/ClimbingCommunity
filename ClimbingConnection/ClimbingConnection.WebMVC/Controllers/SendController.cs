@@ -51,6 +51,12 @@ namespace ClimbingConnection.WebMVC.Controllers
         // GET: Send/Index
         public ActionResult Index()
         {
+            if (!(TempData.Peek("HasProfile") as bool? ?? false))
+            {
+                TempData["ClimberMessage"] = "Please complete your profile to access Gyms, Climbers, and Routes";
+                return RedirectToAction("Create", "Climber");
+            }
+
             var service = CreateSendService();
             var model = service.GetAllSends();
             return View(model);
@@ -58,10 +64,48 @@ namespace ClimbingConnection.WebMVC.Controllers
 
 
 
-        // GET: Send/Gym
+        // GET: Send/Gym/{id}
+        public ActionResult Gym(int id)
+        {
+            if (!(TempData.Peek("HasProfile") as bool? ?? false))
+            {
+                TempData["ClimberMessage"] = "Please complete your profile to access Gyms, Climbers, and Routes";
+                return RedirectToAction("Create", "Climber");
+            }
+
+            var service = CreateSendService();
+            var model = service.GetAllSendsByGymId(id);
+            return View(model);
+        }
+
 
         // GET: Send/Climber
+        public ActionResult Climber(int id)
+        {
+            if (!(TempData.Peek("HasProfile") as bool? ?? false))
+            {
+                TempData["ClimberMessage"] = "Please complete your profile to access Gyms, Climbers, and Routes";
+                return RedirectToAction("Create", "Climber");
+            }
+
+            var service = CreateSendService();
+            var model = service.GetAllSendsByClimberId(id);
+            return View(model);
+        }
+
 
         // GET: Send/Route
+        public ActionResult Route(int id)
+        {
+            if (!(TempData.Peek("HasProfile") as bool? ?? false))
+            {
+                TempData["ClimberMessage"] = "Please complete your profile to access Gyms, Climbers, and Routes";
+                return RedirectToAction("Create", "Climber");
+            }
+
+            var service = CreateSendService();
+            var model = service.GetAllSendsByRouteId(id);
+            return View(model);
+        }
     }
 }

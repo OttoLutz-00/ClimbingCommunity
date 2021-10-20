@@ -43,11 +43,21 @@ namespace ClimbingCommunity.Services
                     DateSent = DateTimeOffset.Now
                 };
 
+
+
                 ctx.Sends.Add(entity);
+
+                var routeGrade = entity.Route.Grade;
+                var climberMaxGrade = entity.Climber.TopGrade;
+                // update the climber's max grade if the route's grade is higher than the climbers current max grade.
+                if (climberMaxGrade < routeGrade)
+                {
+                    ctx.Climbers.Single(e => e.ClimberId == id).TopGrade = routeGrade;
+                }
 
                 ctx.Climbers.Single(e => e.ClimberId == id).TotalSends++;
                 ctx.Routes.Single(e => e.RouteId == entity.RouteId).TotalSends++;
-                return ctx.SaveChanges() <= 5;
+                return ctx.SaveChanges() <= 4;
 
             }
 
@@ -57,7 +67,7 @@ namespace ClimbingCommunity.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Sends.Select(e => new SendListItem()
+                var query = ctx.Sends.OrderByDescending(e => e.SendId).Select(e => new SendListItem()
                 {
                     // for send info
                     SendId = e.SendId,

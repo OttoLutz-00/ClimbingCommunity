@@ -50,7 +50,7 @@ namespace ClimbingCommunity.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Routes.Select(e => new RouteListItem()
+                var query = ctx.Routes.OrderByDescending(e => e.RouteId).Select(e => new RouteListItem()
                 {
                     RouteId = e.RouteId,
                     GymId = e.GymId,
@@ -106,7 +106,7 @@ namespace ClimbingCommunity.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Routes.Where(e => e.GymId == id).Select(e => new RouteListItem()
+                var query = ctx.Routes.Where(e => e.GymId == id).OrderByDescending(e => e.RouteId).Select(e => new RouteListItem()
                 {
                     RouteId = e.RouteId,
                     GymId = e.GymId,

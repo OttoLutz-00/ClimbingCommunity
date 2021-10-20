@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2 class="display-3 greentext">All Sends</h2>
+<p class="display-3 greentext d-inline">All Sends </p> <div class="display-4 mb-1 d-inline text-center"style=" color: #a8a8a8;">from </div> <p class="display-3 greentext d-inline"> @Model.First().ClimberUsername</p>
 
 <p>
     Forgot to log a send? @Html.ActionLink("Log new Send", "Create")
