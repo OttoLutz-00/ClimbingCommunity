@@ -1,0 +1,70 @@
+﻿@model ClimbingCommunity.Models.SendModels.SendCreate
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2 class="display-3 greentext">Log Send</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        
+        <hr / class="bg-dark">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <p class="control-label col-md-2">Route Name</p>
+            <div class="col-md-10">
+                @{
+                    var selectList = new List<SelectListItem>();
+
+                    selectList.Add(new SelectListItem { Text = "Select the Route", Value = "0", Selected = true, Disabled = true });
+
+                    foreach (var item in ViewBag.sendRouteList)
+                    {
+                        selectList.Add(new SelectListItem { Text = item.Name, Value = item.RouteId.ToString() });
+                    }
+
+                }
+                @Html.DropDownListFor(model => model.RouteId, selectList, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.RouteId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Attempts, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Attempts, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Attempts, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p class="control-label col-md-2">How did this route feel?</p>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p class="control-label col-md-2">Suggested grade</p>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SuggestedGrade, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SuggestedGrade, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-outline-secondary greentext", id="nopadding" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index",null, htmlAttributes: new { @class="btn tbn-outline-secondary", id="nopadding", style="color: whitesmoke;"})
+</div>

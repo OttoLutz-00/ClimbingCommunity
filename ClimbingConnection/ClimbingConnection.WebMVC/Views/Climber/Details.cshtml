@@ -47,10 +47,12 @@
     </div>
 
 </div>
-<p class="mt-4">
+<div class="mt-4 d-flex justify-content-around">
+    @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-outline-secondary greentext rounded-pill", id = "nopadding", style = "font-size: 2rem!important; padding: 2rem!important;" })
     @if (Model.ClimberId == (int)TempData.Peek("CurrentClimberId"))
     {
-        @Html.ActionLink("Edit Profile", "Edit", new { id = Model.ClimberId }, htmlAttributes: new { @class = "btn btn-outline-primary", style="padding: .5rem!important;" })
+        @Html.ActionLink("Edit Profile", "Edit", new { id = Model.ClimberId }, htmlAttributes: new { @class = "btn btn-outline-primary rounded-pill", style = "font-size: 2rem!important; padding: 2rem!important;" })
     }
-    @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-outline-secondary greentext", id = "nopadding" })
-</p>
+    @Html.ActionLink("View all Sends", "Climber", "Send" , new { id=Model.ClimberId}, htmlAttributes: new { @class = "btn btn-outline-secondary greentext rounded-pill", id = "nopadding", style = "font-size: 2rem!important; padding: 2rem!important;" })
+
+</div>

@@ -3,30 +3,37 @@
 
 
 @if (Request.IsAuthenticated)
- {
-     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "ms-auto" }))
-     {
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "ms-auto" }))
+    {
         @Html.AntiForgeryToken()
-         <ul class="navbar-nav  ms-auto">
-             <li class="nav-item p-2 py-1">
-             <!--C: AUTHORIZED & CLIMBER-->
-            @if (TempData.Peek("HasProfile") as bool? ?? false)
-             {
-                 string climberName = TempData.Peek("ClimberName").ToString();
-                @Html.ActionLink("Hello, " + climberName + "!", "Details", "Climber", new { id = TempData.Peek("ClimberId")}, htmlAttributes: new { title = "My Profile", @class = "nav - link btn btn-outline-secondary", style = "color: #9FFF1C; padding: 1rem;", id = "nopadding" })
-             }
-             else
-             {
-                @Html.ActionLink("My Account", "Create", "Climber",null, new { @class = "nav - link btn btn-outline-secondary", style = "color: #9FFF1C; padding: 1rem;", id = "nopadding" })
-             }
+<ul class="navbar-nav  ms-auto">
+    <!--C: AUTHORIZED & CLIMBER-->
+    @if (TempData.Peek("HasProfile") as bool? ?? false)
+    {
+        <li class="nav-item p-2 py-1">
+            @Html.ActionLink("My Home Gym", "Details", "Gym", new { id = TempData.Peek("GymId") }, htmlAttributes: new { title = "My Home Gym", @class = "nav - link btn btn-outline-secondary", style = "color: #9FFF1C; padding: 1rem;", id = "nopadding" })
+        </li>
+        string climberName = TempData.Peek("ClimberName").ToString();
+        <li class="nav-item p-2 py-1">
+            @Html.ActionLink("Hello, " + climberName + "!", "Details", "Climber", new { id = TempData.Peek("ClimberId") }, htmlAttributes: new { title = "My Profile", @class = "nav - link btn btn-outline-secondary", style = "color: #9FFF1C; padding: 1rem;", id = "nopadding" })
+        </li>
+    }
+    else
+    {
+        <li class="nav-item p-2 py-1">
+            @Html.ActionLink("My Account", "Create", "Climber", null, new { @class = "nav - link btn btn-outline-secondary", style = "color: #9FFF1C; padding: 1rem;", id = "nopadding" })
+            </li>
+            }
             <!--B: AUTHORIZED & NOT CLIMBER-->
-             </li>
-             <li class="nav-item p-2 py-1"><a class="greentext nav - link btn btn-outline-secondary" id="nopadding" href="javascript:document.getElementById('logoutForm').submit()" style="padding: 1rem;">Log off</a></li>
-         </ul>
-     }
- }
- else
- {
+
+        <li class="nav-item p-2 py-1"><a class="greentext nav - link btn btn-outline-secondary" id="nopadding" href="javascript:document.getElementById('logoutForm').submit()" style="padding: 1rem;">Log off</a></li>
+
+    </ul>
+                }
+            }
+            else
+            {
     <!--A: NOT AUTHORIZED & NOT CLIMBER-->
      <ul class="navbar-nav me-3">
          <li class="nav-item p-2 py-1">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "nopadding", @class = "nav - link btn btn-outline-secondary", style = "color: #9FFF1C; padding: 1rem;" })</li>

@@ -28,19 +28,13 @@
 
 <div>
 
-    <hr / class="bg-dark">
+    <hr class="bg-dark"/>
 
 
 
     <p class="" style="font-size: x-large">
         · @Html.DisplayFor(model => model.Description)
     </p>
-
-
-
-
-
-
 
     <div>
         <p class="d-inline" style="font-size: x-large">Set by </p>
@@ -60,13 +54,16 @@
 
 <div class="d-flex justify-content-around">
 
-@if (Model.ClimberId == (int)TempData.Peek("CurrentClimberId"))
-{
-    @Html.ActionLink("Edit Route", "Edit", new { id = Model.RouteId }, htmlAttributes: new { @class="btn btn-outline-primary rounded-pill", style = "padding: 3rem!important; font-size: x-large!important;" })
-}
-    @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class="btn btn-outline-secondary rounded-pill", id="nopadding", style = "padding: 3rem!important; font-size: x-large!important;" })
+    @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-outline-secondary rounded-pill", id = "nopadding", style = "padding: 2rem!important; font-size: x-large!important;" })
+    @if (Model.ClimberId == (int)TempData.Peek("CurrentClimberId"))
+    {
+        @Html.ActionLink("Edit Route", "Edit", new { id = Model.RouteId }, htmlAttributes: new { @class = "btn btn-outline-primary rounded-pill", style = "padding: 2rem!important; font-size: x-large!important;" })
+    }
 
-    @Html.ActionLink("Log Send on This Route", "Create", "Send",null, htmlAttributes: new { @class = "btn btn-outline-secondary greentext rounded-pill", id = "nopadding", style= "padding: 3rem!important; font-size: x-large!important;" })
+
+    @Html.ActionLink("View all sends on this route", "Route", "Send", new { id= Model.RouteId}, htmlAttributes: new { @class = "btn btn-outline-secondary greentext rounded-pill", id = "nopadding", style = "padding: 2rem!important; font-size: x-large!important;" })
+
+    @Html.ActionLink("Log a send on this route", "Create", "Send", null, htmlAttributes: new { @class = "btn btn-outline-secondary greentext rounded-pill", id = "nopadding", style = "padding: 2rem!important; font-size: x-large!important;" })
 
 
 </div>

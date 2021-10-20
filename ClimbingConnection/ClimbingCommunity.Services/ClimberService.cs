@@ -48,6 +48,7 @@ namespace ClimbingCommunity.Services
             {
                 var query =
                     ctx.Climbers
+                    .OrderByDescending(e => e.ClimberId)
                     .Select(e => new ClimberListItem()
                     {
                         ClimberId = e.ClimberId,
